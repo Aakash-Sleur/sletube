@@ -7,7 +7,7 @@ Click below to have aa live demo of the projects.
 
 https://sle-tube.netlify.app/
 
-#Features
+# Features
 
 The site has the following features:
  - Responsive Design
@@ -17,6 +17,7 @@ The site has the following features:
  - Channel Details Page
  - Video recommendation part
  
+ # Other Links
  
  Follow me on other platforms:
  
