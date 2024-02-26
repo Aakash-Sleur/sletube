@@ -1,36 +1,29 @@
-import {useState, useEffect} from 'react'
-import { Box, Typography, Stack } from '@mui/material'
-import {Sidebar, Videos } from './'
-import { fetchFromAPI } from '../utils/fetchFromApi'
+import { useState, useEffect } from "react";
+import { Box, Typography, Stack } from "@mui/material";
+import { Sidebar, Videos } from "./";
+import { fetchFromAPI } from "../utils/fetchFromApi";
+import { useCategory } from "../hooks/use-store-modal";
 
-const Feed = ({open, toogleOpen}) => {
-
-  const [selectedCategory, setSelectedCategory] = useState('New');
+const Feed = () => {
+  const { category } = useCategory();
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=${selectedCategory}`)
-    .then((data) => 
-      setVideos(data.items))
-  }, [selectedCategory])
+    fetchFromAPI(`search?part=snippet&q=${category}`).then((data) =>
+      setVideos(data.items)
+    );
+  }, [category]);
 
   return (
-    <Stack sx={{flexDirection: {sx:'column', md:'row'}}}>
-      <Box sx={{height: {sx:'auto', md:'92vh'}, px:{sx:0, md:2}}}>
-
-        <Sidebar 
-        open = {open}
-        toogleOpen={toogleOpen}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-        />
-      </Box>
-      <Box p={2} sx={{overflowY:'auto', height:'90vh', flex:2, marginTop:"1rem"}}>
-        
-        <Videos videos={videos}/>
+    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
+      <Box
+        p={2}
+        sx={{ overflowY: "auto", height: "90vh", flex: 2, marginTop: "1rem" }}
+      >
+        <Videos videos={videos} />
       </Box>
     </Stack>
-  )
-}
+  );
+};
 
-export default Feed
+export default Feed;
